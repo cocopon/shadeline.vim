@@ -1,0 +1,272 @@
+*shadeline.txt*  Simple and plain status line customization
+
+
+==============================================================================
+CONTENTS                                                  *shadeline-contents*
+
+    1. Intro ....................... |shadeline-intro|
+    2. Quickstart .................. |shadeline-quickstart|
+    3. Config ...................... |shadeline-config|
+    4. Item ........................ |shadeline-item|
+      4.1 Preset ..................... |shadeline-item-preset|
+      4.2 Percent Style Item ......... |shadeline-item-percent-style|
+      4.3 Custom Function ............ |shadeline-item-custom-function|
+      4.4 Plain Text ................. |shadeline-item-plain-text|
+      4.5 Group ...................... |shadeline-item-group|
+    5. Commands .................... |shadeline-commands|
+    6. Examples .................... |shadeline-examples|
+    7. Advanced .................... |shadowline-advanced|
+    8. About ....................... |shadeline-about|
+
+
+==============================================================================
+1. Intro                                                     *shadeline-intro*
+
+*Shadeline* provides a very simple way to customize your status line.
+
+    Simple configuration >
+        let g:shadeline = {}
+        let g:shadeline.active = {
+            \   'left':  ['fname', ' ', 'flags'],
+            \   'right': ['ruler']
+            \ }
+        let g:shadeline.inactive = {
+            \   'left':  ['fname', ' ', 'flags']
+            \ }
+    That's all. Very simple.
+<
+    No extra color scheme >
+    It's peaceful. So it doesn't require a separate color scheme like other
+    plugin. You can enjoy status line customization with your favorite color
+    scheme!
+<
+
+==============================================================================
+2. Quickstart                                           *shadeline-quickstart*
+
+TODO:
+>
+    let s:cfg = {}
+    let s:cfg.active = {
+          \   'left':  ['fname', ' ', 'flags'],
+          \   'right': ['ruler']
+          \ }
+    let s:cfg.inactive = {
+          \   'left':  ['fname', ' ', 'flags']
+          \ }
+    let g:shadeline = s:cfg
+<
+
+==============================================================================
+3. Config                                                   *shadeline-config*
+
+|shadeline| uses global variable *g:shadeline* for configuration.
+>
+    g:shadeline
+<
+g:shadeline is |Dictionary| and has two key: "active" and "inactive".
+>
+    g:shadeline.
+               |-- active
+               `-- inactive
+<
+"active" will be used for a status line of the current buffer, "inactive"
+otherwise. Each value is also |Dictionary| and has two key: "left" and
+"right".
+>
+    g:shadeline.
+               |- active.
+               |        |--- left
+               |        `--- right
+               `- inactive.
+                          |- left
+                          `- right
+<
+"left" presents left-sided items of the status bar, "right" is right-side.
+Each value is |List| of items. For example:
+>
+    g:shadeline.active.left = [
+          \ 'fname', ' ', 'flags']
+
+    g:shadeline.active.right = [
+          \ 'fenc', ' ', 'ruler']
+<
+It will be displayed as follows:
+>
+    +----------------------------------------------------------------+
+    |[fname][ ][flags]                               [fenc][ ][ruler]|
+    +----------------------------------------------------------------+
+<
+|Shadeline| supports various types of items. See |shadeline-item| for
+available types.
+
+
+==============================================================================
+4. Item                                                       *shadeline-item*
+
+There are five types of items:
+
+    Type                Example   Section~
+    ------------------  --------  ------------------------------~
+    Preset              "fname"   |shadeline-item-preset|
+    Percent Style Item  "%m"      |shadeline-item-percent-style|
+    Custom Function     "MyItem"  |shadeline-item-custom-function|
+    Plain Text          " | "     |shadeline-item-plain-text|
+    Group               [...]     |shadeline-item-group|
+
+
+------------------------------------------------------------------------------
+4.1 Preset                                             *shadeline-item-preset*
+
+Preset is presented as a lowercase string. For example:
+>
+    g:shadeline.active.left = [
+          \ 'fname', ' ', 'mod']
+<
+"fname" is a file name and "mod" is a modified flag. It will be displayed as
+follows:
+>
+    +------------------------------- - -
+    |shadeline.txt [+]
+    +^-------------^---------------- - -
+     fname         mod
+<
+Value                   Description~
+
+"fileencoding", "fenc"                    *shadeline-item-preset-fileencoding*
+                        File encoding of file in the buffer. Example:
+>
+                            utf-8
+<
+"fileformat", "ff"                          *shadeline-item-preset-fileformat*
+                        File format of file in the buffer. Example:
+>
+                            unix
+<
+"filename", "fname"                           *shadeline-item-preset-filename*
+                        File name (tail) of file in the buffer. Same as "%t"
+                        of 'statusline'. Example: 
+>
+                            shadline.txt
+<
+"filetype", "ff"                              *shadeline-item-preset-filetype*
+                        File type of file in the buffer. Example:
+>
+                            javascript
+<
+"flags"                                          *shadeline-item-preset-flags*
+                        Sets of various flags. Example:
+>
+                            [Help][+][RO]
+<
+"mode"                                            *shadeline-item-preset-mode*
+                        Current mode as readable text. Example:
+>
+                            INSERT
+<
+"modified", "mod"                             *shadeline-item-preset-modified*
+                        Modified flags of file in the buffer. Example:
+>
+                            [+]
+<
+"ruler"                                          *shadeline-item-preset-ruler*
+                        The line and column number of the cursor position.
+                        Example:
+>
+                            32%:98
+<
+"<"                                                  *shadeline-item-preset-<*
+                        Where to truncate line if too long. Same as "%<" of
+                        'statusline'.
+
+
+------------------------------------------------------------------------------
+4.2 Percent Style Item                           *shadeline-item-perent-style*
+
+|Shadeline| supports percent style items of status line. For example:
+>
+    g:shadeline.active.left = [
+          \ 'fname', ' ', '%r', '%m']
+<
+"%r" is a readonly flag and "%m" is a modified flag. It will be displayed as
+follows:
+>
+    +------------------------------- - -
+    |shadeline.txt [RO][+]
+    +^-------------^---^------------ - -
+     fname         %r  %m
+<
+See 'statusline' for available items.
+
+
+------------------------------------------------------------------------------
+4.3 Custom Function                           *shadeline-item-custom-function*
+
+You can create custom item using function. For example, if you want to show
+the time, define MyItem_Time function:
+>
+    function! MyItem_Time()
+      return strftime('%H:%M:%S')
+    endfunction
+<
+And add a function name to config:
+>
+    g:shadeline.active.right = [
+          \ 'ft', ' ', 'MyItem_Time']
+<
+It will be displayed as follows:
+>
+    - - -------------------------------+
+                    javascript 09:41:00|
+    - - ------------^----------^-------+
+                    ft         MyItem_Time
+<
+
+------------------------------------------------------------------------------
+4.4 Plain Text                                     *shadeline-item-plain-text*
+
+TODO:
+
+
+------------------------------------------------------------------------------
+4.5 Group                                               *shadeline-item-group*
+
+TODO:
+
+
+==============================================================================
+5. Commands                                               *shadeline-commands*
+
+:ShadelineEnable                                            *:ShadelineEnable*
+                        Activate |Shadeline|.
+
+:ShadelineDisable                                           *:ShadelineEnable*
+                        Deactivate |Shadeline|.
+
+:ShadelineUpdate                                            *:ShadelineUpdate*
+                        Update all status lines.
+
+
+==============================================================================
+6. Examples                                               *shadeline-examples*
+
+TODO:
+
+
+==============================================================================
+7. Advanced                                               *shadeline-advanced*
+
+TODO:
+
+
+==============================================================================
+8. About                                                     *shadeline-about*
+
+|Shadeline| is developed by cocopon and licensed under the MIT License.
+Visit the project page for the latest version:
+
+    https://github.com/cocopon/shadeline.vim
+
+
+==============================================================================
+vim:ft=help:norl:ts=8:tw=78:

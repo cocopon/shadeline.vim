@@ -240,7 +240,7 @@ TODO:
 :ShadelineEnable                                            *:ShadelineEnable*
                         Activate |Shadeline|.
 
-:ShadelineDisable                                           *:ShadelineEnable*
+:ShadelineDisable                                          *:ShadelineDisable*
                         Deactivate |Shadeline|.
 
 :ShadelineUpdate                                            *:ShadelineUpdate*

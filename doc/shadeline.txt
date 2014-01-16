@@ -139,7 +139,7 @@ Value                   Description~
                             javascript
 <
 "flags"                                          *shadeline-item-preset-flags*
-                        Sets of various flags. Example:
+                        Sets of the common flags. Example:
 >
                             [Help][+][RO]
 <
@@ -227,7 +227,7 @@ It will be displayed as follows:
 ------------------------------------------------------------------------------
 3.5 Group                                               *shadeline-item-group*
 
-Group is presented as |List| and contains subitems. Each subitem will be
+Group is a set of subitems and presented as |List|. Each subitem will be
 separated by a separator (default value is " | "). For example:
 >
     g:shadeline.active.right = [

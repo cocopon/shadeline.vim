@@ -27,11 +27,11 @@ CONTENTS                                                  *shadeline-contents*
     Simple configuration >
         let g:shadeline = {}
         let g:shadeline.active = {
-            \   'left':  ['fname', ' ', 'flags'],
+            \   'left':  ['fname', 'flags'],
             \   'right': ['ruler']
             \ }
         let g:shadeline.inactive = {
-            \   'left':  ['fname', ' ', 'flags']
+            \   'left':  ['fname', 'flags']
             \ }
     That's all. Very simple.
 <
@@ -48,11 +48,11 @@ TODO:
 >
     let s:cfg = {}
     let s:cfg.active = {
-          \   'left':  ['fname', ' ', 'flags'],
+          \   'left':  ['fname', 'flags'],
           \   'right': ['ruler']
           \ }
     let s:cfg.inactive = {
-          \   'left':  ['fname', ' ', 'flags']
+          \   'left':  ['fname', 'flags']
           \ }
     let g:shadeline = s:cfg
 <
@@ -86,15 +86,15 @@ otherwise. Each value is also |Dictionary| and has two key: "left" and
 Each value is |List| of items. For example:
 >
     g:shadeline.active.left = [
-          \ 'fname', ' ', 'flags']
+          \ 'fname', 'flags']
 
     g:shadeline.active.right = [
-          \ 'fenc', ' ', 'ruler']
+          \ 'fenc', 'ruler']
 <
 It will be displayed as follows:
 >
     +----------------------------------------------------------------+
-    |[fname][ ][flags]                               [fenc][ ][ruler]|
+    |[fname] [flags]                                   [fenc] [ruler]|
     +----------------------------------------------------------------+
 <
 |Shadeline| supports various types of items. See |shadeline-item| for
@@ -121,7 +121,7 @@ There are five types of items:
 Preset is presented as a lowercase string. For example:
 >
     g:shadeline.active.left = [
-          \ 'fname', ' ', 'mod']
+          \ 'fname', 'mod']
 <
 "fname" is a file name and "mod" is a modified flag. It will be displayed as
 follows:
@@ -186,15 +186,15 @@ Value                   Description~
 |Shadeline| supports percent style items of status line. For example:
 >
     g:shadeline.active.left = [
-          \ 'fname', ' ', '%r', '%m']
+          \ 'fname', '%r', '%m']
 <
 "%r" is a readonly flag and "%m" is a modified flag. It will be displayed as
 follows:
 >
     +------------------------------- - -
-    |shadeline.txt [RO][+]
-    +^-------------^---^------------ - -
-     fname         %r  %m
+    |shadeline.txt [RO] [+]
+    +^-------------^----^----------- - -
+     fname         %r   %m
 <
 See 'statusline' for available items.
 
@@ -212,7 +212,7 @@ the time, define MyItem_Time function:
 And add a function name to config:
 >
     g:shadeline.active.right = [
-          \ 'ft', ' ', 'MyItem_Time']
+          \ 'ft', 'MyItem_Time']
 <
 It will be displayed as follows:
 >

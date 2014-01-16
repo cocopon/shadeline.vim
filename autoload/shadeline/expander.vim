@@ -6,6 +6,9 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
+let s:def_separator = ' '
+
+
 function! shadeline#expander#expand(config)
 	for activity in ['active', 'inactive']
 		if !has_key(a:config, activity)
@@ -24,8 +27,12 @@ function! s:expand_line(line_config)
 		call map(a:line_config[side], 's:expand_item_data(v:val)')
 	endfor
 
-	let a:line_config.prefix = shadeline#util#escape(get(a:line_config, 'prefix', ''))
-	let a:line_config.postfix = shadeline#util#escape(get(a:line_config, 'postfix', ''))
+	let a:line_config.prefix = shadeline#util#escape(
+				\ get(a:line_config, 'prefix', ''))
+	let a:line_config.postfix = shadeline#util#escape(
+				\ get(a:line_config, 'postfix', ''))
+	let a:line_config.separator = shadeline#util#escape(
+				\ get(a:line_config, 'separator', s:def_separator))
 endfunction
 
 

@@ -9,7 +9,7 @@ CONTENTS                                                  *shadeline-contents*
     3. Item ........................ |shadeline-item|
       3.1 Preset ..................... |shadeline-item-preset|
       3.2 Percent Style .............. |shadeline-item-percent-style|
-      3.3 Custom Function ............ |shadeline-item-custom-function|
+      3.3 User Function .............. |shadeline-item-user-function|
       3.4 Plain Text ................. |shadeline-item-plain-text|
       3.5 Group ...................... |shadeline-item-group|
     4. Commands .................... |shadeline-commands|
@@ -89,19 +89,20 @@ available types.
 
 There are five types of items:
 
-    Type             Example   Section~
-    ---------------  --------  ------------------------------~
-    Preset           "fname"   |shadeline-item-preset|
-    Percent Style    "%m"      |shadeline-item-percent-style|
-    Custom Function  "MyItem"  |shadeline-item-custom-function|
-    Plain Text       " | "     |shadeline-item-plain-text|
-    Group            [...]     |shadeline-item-group|
+    Type           Example   Section~
+    -------------  --------  ----------------------------~
+    Preset         "fname"   |shadeline-item-preset|
+    Percent style  "%m"      |shadeline-item-percent-style|
+    User function  "MyItem"  |shadeline-item-user-function|
+    Plain text     " | "     |shadeline-item-plain-text|
+    Group          [...]     |shadeline-item-group|
 
 
 ------------------------------------------------------------------------------
 3.1 Preset                                             *shadeline-item-preset*
 
-Preset is presented as a lowercase string. For example:
+Preset is an item predefined by |Shadeline|. It is presented as a lowercase
+string. For example:
 >
     g:shadeline.active.left = [
           \ 'fname', 'mod']
@@ -166,7 +167,7 @@ Value                   Description~
 ------------------------------------------------------------------------------
 3.2 Percent Style                                *shadeline-item-perent-style*
 
-|Shadeline| supports percent style items of status line. For example:
+|Shadeline| supports percent style item of 'statusline'. For example:
 >
     g:shadeline.active.left = [
           \ 'fname', '%r', '%m']
@@ -183,10 +184,10 @@ See 'statusline' for available items.
 
 
 ------------------------------------------------------------------------------
-3.3 Custom Function                           *shadeline-item-custom-function*
+3.3 User Function                               *shadeline-item-user-function*
 
-You can create custom item using function. For example, if you want to show
-the time, define MyItem_Time function:
+You can create a custom item using user function. For example, if you want to
+show the time, define MyItem_Time function:
 >
     function! MyItem_Time()
       return strftime('%H:%M:%S')
@@ -208,7 +209,7 @@ It will be displayed as follows:
 ------------------------------------------------------------------------------
 3.4 Plain Text                                     *shadeline-item-plain-text*
 
-An item that is not a preset, percent style, and a custom function will be
+An item that is not a preset, percent style, and a user function will be
 construed as plain text. Plain text item will be displayed as it is.
 For example:
 >

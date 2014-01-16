@@ -80,7 +80,7 @@ endfunction
 
 function! s:str2config(str)
 	if a:str == '<'
-		" Truncation mark
+		" Truncation marker
 		return {
 					\ 	'type': 'raw',
 					\ 	'value': '%<'
@@ -102,6 +102,7 @@ function! s:str2config(str)
 	endif
 
 	if match(a:str, '^[A-Z]\w*$\C') == 0
+				\ || match(a:str, '^\w\+\(#\w\+\)\+$\C') == 0
 		" Function
 		return {
 					\ 	'type': 'function',

@@ -55,9 +55,32 @@ endfunction
 
 
 function! shadeline#builder#build_item(item_config)
-	let builder = printf('shadeline#builder#%s#build',
+	let builder = printf('shadeline#builder#%s#value',
 				\ a:item_config.type)
-	return function(builder)(a:item_config)
+	let value = function(builder)(a:item_config)
+	return a:item_config.prefix
+				\ . value
+				\ . a:item_config.postfix
+endfunction
+
+
+function! shadeline#builder#format_fields(config)
+	let prefix = ''
+
+	if get(a:config, 'left_justify', 0)
+		let prefix .= '-'
+	endif
+	if get(a:config, 'zerofill', 0)
+		let prefix .= '0'
+	endif
+	if get(a:config, 'min_width', -1) > 0
+		let prefix .= string(a:config.min_width)
+	endif
+	if get(a:config, 'max_width', -1) > 0
+		let prefix .= '.' . string(a:config.max_width)
+	endif
+
+	return prefix
 endfunction
 
 

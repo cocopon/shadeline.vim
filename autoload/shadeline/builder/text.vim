@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! shadeline#builder#text#build(config)
+function! shadeline#builder#text#value(config)
 	return shadeline#util#escape(a:config.value)
 endfunction
 

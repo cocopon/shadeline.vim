@@ -6,23 +6,21 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! shadeline#builder#group#build(config)
-	let config = copy(a:config)
-
+function! shadeline#builder#group#value(config)
 	let items = []
-	for item_config in config.items
+	for item_config in a:config.items
 		let item = shadeline#builder#build_item(item_config)
 		if !empty(item)
 			call add(items, item)
 		endif
 		unlet item_config
 	endfor
-	unlet config.items
 
-	let config.value = printf('(%s%%)',
-				\ join(items, config.separator))
-
-	return shadeline#builder#item#build(config)
+	let value = '%'
+	let value .= shadeline#builder#format_fields(a:config)
+	let value .= printf('(%s%%)',
+				\ join(items, a:config.separator))
+	return value
 endfunction
 
 

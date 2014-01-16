@@ -6,12 +6,12 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function!shadeline#builder#function#build(config)
-	let config = copy(a:config)
-	let config.value = printf('{%s()}', config.value)
-	return shadeline#builder#item#build(config)
+function!shadeline#builder#function#value(config)
+	let value = '%'
+	let value .= shadeline#builder#format_fields(a:config)
+	let value .= printf('{%s()}', a:config.value)
 
-	return shadeline#builder#item#build(value)
+	return value
 endfunction
 
 

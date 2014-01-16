@@ -35,9 +35,8 @@ CONTENTS                                                  *shadeline-contents*
     That's all. Very simple.
 <
     No extra color scheme >
-    It's peaceful. So it doesn't require a separate color scheme like other
-    plugin. You can enjoy status line customization with your favorite color
-    scheme!
+    It's peaceful, doesn't require a separate color scheme like other plugin.
+    You can enjoy status line customization with your favorite color scheme!
 <
 
 ==============================================================================

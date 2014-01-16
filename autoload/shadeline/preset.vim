@@ -21,6 +21,14 @@ function! shadeline#preset#function_name(name)
 endfunction
 
 
+function! shadeline#preset#fan()
+	return {
+				\ 	'type': 'function',
+				\ 	'value': 'shadeline#functions#fan',
+				\ }
+endfunction
+
+
 function! shadeline#preset#fileencoding()
 	return {
 				\ 	'type': 'function',

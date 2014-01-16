@@ -5,7 +5,7 @@ Shadeline provides a very simple way to customize your status line.
 
 Why Shadeline?
 --------------
-There are a lot of plugin to empower status line.
+There are a lot of plugins to empower status line.
 [vim-powerline](https://github.com/Lokaltog/vim-powerline),
 [vim-airline](https://github.com/bling/vim-airline),
 [lightline.vim](https://github.com/itchyny/lightline.vim), ...

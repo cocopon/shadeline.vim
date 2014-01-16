@@ -9,7 +9,7 @@ There are a lot of plugins to empower status line.
 [vim-powerline](https://github.com/Lokaltog/vim-powerline),
 [vim-airline](https://github.com/bling/vim-airline),
 [lightline.vim](https://github.com/itchyny/lightline.vim), ...
-Why choose Shadeline?
+so why choose Shadeline?
 
 - Simple configuration
 

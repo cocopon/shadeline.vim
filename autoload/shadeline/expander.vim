@@ -6,7 +6,8 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-let s:def_separator = ' '
+let s:def_line_item_separator = ' '
+let s:def_group_item_separator = ' | '
 
 
 function! shadeline#expander#expand(config)
@@ -32,7 +33,7 @@ function! s:expand_line(line_config)
 	let a:line_config.postfix = shadeline#util#escape(
 				\ get(a:line_config, 'postfix', ''))
 	let a:line_config.separator = shadeline#util#escape(
-				\ get(a:line_config, 'separator', s:def_separator))
+				\ get(a:line_config, 'separator', s:def_line_item_separator))
 endfunction
 
 
@@ -64,10 +65,14 @@ function! s:expand_item_config(config)
 
 	if config.type ==# 'group'
 		call map(config.items, 's:expand_item_data(v:val)')
+		let config.separator = shadeline#util#escape(
+					\ get(config, 'separator', s:def_group_item_separator))
 	endif
 
-	let config.prefix = shadeline#util#escape(get(config, 'prefix', ''))
-	let config.postfix = shadeline#util#escape(get(config, 'postfix', ''))
+	let config.prefix = shadeline#util#escape(
+				\ get(config, 'prefix', ''))
+	let config.postfix = shadeline#util#escape(
+				\ get(config, 'postfix', ''))
 
 	return config
 endfunction

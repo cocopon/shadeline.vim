@@ -6,9 +6,6 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-let s:def_separator = ' | '
-
-
 function! shadeline#builder#group#build(config)
 	let config = copy(a:config)
 
@@ -22,12 +19,8 @@ function! shadeline#builder#group#build(config)
 	endfor
 	unlet config.items
 
-	let separator = shadeline#util#escape(
-				\ get(config, 'separator', s:def_separator))
-	if has_key(config, 'separator')
-		unlet config.separator
-	endif
-	let config.value = printf('(%s%%)', join(items, separator))
+	let config.value = printf('(%s%%)',
+				\ join(items, config.separator))
 
 	return shadeline#builder#item#build(config)
 endfunction

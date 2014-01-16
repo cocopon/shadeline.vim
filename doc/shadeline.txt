@@ -260,19 +260,19 @@ It will be displayed as follows:
 
 Default configuration:
 >
-    let s:shadeline = {}
-    let s:shadeline.active = {
+    let g:shadeline = {}
+    let g:shadeline.active = {
           \   'left':  ['fname', 'flags'],
           \   'right': ['ruler']
           \ }
-    let s:shadeline.inactive = {
+    let g:shadeline.inactive = {
           \   'left':  ['fname', 'flags']
           \ }
 <
 Git branch (using |fugitive|):
 >
-    let s:shadeline = {}
-    let s:shadeline.active = {
+    let g:shadeline = {}
+    let g:shadeline.active = {
           \   'left':  ['fname', 'MyItem_Fugitive', 'flags'],
           \   'right': ['ruler']
           \ }

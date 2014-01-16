@@ -15,7 +15,7 @@ CONTENTS                                                  *shadeline-contents*
       4.5 Group ...................... |shadeline-item-group|
     5. Commands .................... |shadeline-commands|
     6. Examples .................... |shadeline-examples|
-    7. Advanced .................... |shadowline-advanced|
+    7. Advanced .................... |shadeline-advanced|
     8. About ....................... |shadeline-about|
 
 

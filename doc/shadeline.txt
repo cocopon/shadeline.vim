@@ -131,7 +131,7 @@ Value                   Description~
                         File name (tail) of file in the buffer. Same as "%t"
                         of 'statusline'. Example: 
 >
-                            shadline.txt
+                            shadeline.txt
 <
 "filetype", "ff"                              *shadeline-item-preset-filetype*
                         File type of file in the buffer. Example:

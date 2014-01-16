@@ -5,18 +5,17 @@
 CONTENTS                                                  *shadeline-contents*
 
     1. Intro ....................... |shadeline-intro|
-    2. Quickstart .................. |shadeline-quickstart|
-    3. Config ...................... |shadeline-config|
-    4. Item ........................ |shadeline-item|
-      4.1 Preset ..................... |shadeline-item-preset|
-      4.2 Percent Style Item ......... |shadeline-item-percent-style|
-      4.3 Custom Function ............ |shadeline-item-custom-function|
-      4.4 Plain Text ................. |shadeline-item-plain-text|
-      4.5 Group ...................... |shadeline-item-group|
-    5. Commands .................... |shadeline-commands|
-    6. Examples .................... |shadeline-examples|
-    7. Advanced .................... |shadeline-advanced|
-    8. About ....................... |shadeline-about|
+    2. Config ...................... |shadeline-config|
+    3. Item ........................ |shadeline-item|
+      3.1 Preset ..................... |shadeline-item-preset|
+      3.2 Percent Style .............. |shadeline-item-percent-style|
+      3.3 Custom Function ............ |shadeline-item-custom-function|
+      3.4 Plain Text ................. |shadeline-item-plain-text|
+      3.5 Group ...................... |shadeline-item-group|
+    4. Commands .................... |shadeline-commands|
+    5. Examples .................... |shadeline-examples|
+    6. Advanced .................... |shadeline-advanced|
+    7. About ....................... |shadeline-about|
 
 
 ==============================================================================
@@ -42,23 +41,7 @@ CONTENTS                                                  *shadeline-contents*
 <
 
 ==============================================================================
-2. Quickstart                                           *shadeline-quickstart*
-
-TODO:
->
-    let s:cfg = {}
-    let s:cfg.active = {
-          \   'left':  ['fname', 'flags'],
-          \   'right': ['ruler']
-          \ }
-    let s:cfg.inactive = {
-          \   'left':  ['fname', 'flags']
-          \ }
-    let g:shadeline = s:cfg
-<
-
-==============================================================================
-3. Config                                                   *shadeline-config*
+2. Config                                                   *shadeline-config*
 
 |shadeline| uses global variable *g:shadeline* for configuration.
 >
@@ -102,21 +85,21 @@ available types.
 
 
 ==============================================================================
-4. Item                                                       *shadeline-item*
+3. Item                                                       *shadeline-item*
 
 There are five types of items:
 
-    Type                Example   Section~
-    ------------------  --------  ------------------------------~
-    Preset              "fname"   |shadeline-item-preset|
-    Percent Style Item  "%m"      |shadeline-item-percent-style|
-    Custom Function     "MyItem"  |shadeline-item-custom-function|
-    Plain Text          " | "     |shadeline-item-plain-text|
-    Group               [...]     |shadeline-item-group|
+    Type             Example   Section~
+    ---------------  --------  ------------------------------~
+    Preset           "fname"   |shadeline-item-preset|
+    Percent Style    "%m"      |shadeline-item-percent-style|
+    Custom Function  "MyItem"  |shadeline-item-custom-function|
+    Plain Text       " | "     |shadeline-item-plain-text|
+    Group            [...]     |shadeline-item-group|
 
 
 ------------------------------------------------------------------------------
-4.1 Preset                                             *shadeline-item-preset*
+3.1 Preset                                             *shadeline-item-preset*
 
 Preset is presented as a lowercase string. For example:
 >
@@ -181,7 +164,7 @@ Value                   Description~
 
 
 ------------------------------------------------------------------------------
-4.2 Percent Style Item                           *shadeline-item-perent-style*
+3.2 Percent Style                                *shadeline-item-perent-style*
 
 |Shadeline| supports percent style items of status line. For example:
 >
@@ -200,7 +183,7 @@ See 'statusline' for available items.
 
 
 ------------------------------------------------------------------------------
-4.3 Custom Function                           *shadeline-item-custom-function*
+3.3 Custom Function                           *shadeline-item-custom-function*
 
 You can create custom item using function. For example, if you want to show
 the time, define MyItem_Time function:
@@ -223,19 +206,44 @@ It will be displayed as follows:
 <
 
 ------------------------------------------------------------------------------
-4.4 Plain Text                                     *shadeline-item-plain-text*
+3.4 Plain Text                                     *shadeline-item-plain-text*
 
-TODO:
-
+An item that is not a preset, percent style, and a custom function will be
+construed as plain text. Plain text item will be displayed as it is.
+For example:
+>
+    g:shadeline.active.left = [
+          \ 'fname', 'flags', ';-)']
+<
+It will be displayed as follows:
+>
+    +------------------------------- - -
+    |eval.txt [Help][RO] ;-)
+    +^--------^----------^---------- - -
+     fname    flags      ;-)
+<
 
 ------------------------------------------------------------------------------
-4.5 Group                                               *shadeline-item-group*
+3.5 Group                                               *shadeline-item-group*
 
-TODO:
-
+Group is presented as |List| and contains subitems. Each subitem will be
+separated by a separator (default value is " | "). For example:
+>
+    g:shadeline.active.right = [
+          \   ['ff', 'fenc', 'ft'],
+          \   'ruler',
+          \ ]
+<
+It will be displayed as follows:
+>
+    - - -------------------------------+
+           unix | utf-8 | ruby   86%:24|
+    - - ---^------^-------^------^-----+
+          [ff     fenc    ft]    ruler
+<
 
 ==============================================================================
-5. Commands                                               *shadeline-commands*
+4. Commands                                               *shadeline-commands*
 
 :ShadelineEnable                                            *:ShadelineEnable*
                         Activate |Shadeline|.
@@ -248,19 +256,43 @@ TODO:
 
 
 ==============================================================================
-6. Examples                                               *shadeline-examples*
+5. Examples                                               *shadeline-examples*
+
+Default configuration:
+>
+    let s:shadeline = {}
+    let s:shadeline.active = {
+          \   'left':  ['fname', 'flags'],
+          \   'right': ['ruler']
+          \ }
+    let s:shadeline.inactive = {
+          \   'left':  ['fname', 'flags']
+          \ }
+<
+Git branch (using |fugitive|):
+>
+    let s:shadeline = {}
+    let s:shadeline.active = {
+          \   'left':  ['fname', 'MyItem_Fugitive', 'flags'],
+          \   'right': ['ruler']
+          \ }
+
+    function! MyItem_Fugitive()
+      let name = exists('*fugitive#head')
+            \ ? fugitive#head()
+            \ : ''
+      return printf('(%s)', empty(name) ? '-' : name)
+    endfunction
+<
+
+==============================================================================
+6. Advanced                                               *shadeline-advanced*
 
 TODO:
 
 
 ==============================================================================
-7. Advanced                                               *shadeline-advanced*
-
-TODO:
-
-
-==============================================================================
-8. About                                                     *shadeline-about*
+7. About                                                     *shadeline-about*
 
 |Shadeline| is developed by cocopon and licensed under the MIT License.
 Visit the project page for the latest version:

@@ -164,7 +164,7 @@ Value                   Description~
 
 
 ------------------------------------------------------------------------------
-3.2 Percent Style                                *shadeline-item-perent-style*
+3.2 Percent Style                               *shadeline-item-percent-style*
 
 |Shadeline| supports percent style item of 'statusline'. For example:
 >

@@ -16,10 +16,14 @@ command! -nargs=0 ShadelineDisable call shadeline#disable()
 command! -nargs=0 ShadelineUpdate call shadeline#update_all()
 
 
-augroup Shadeline
-	autocmd!
-	autocmd VimEnter * call shadeline#init()
-augroup END
+if has('vim_starting')
+  augroup Shadeline
+    autocmd!
+    autocmd VimEnter * call shadeline#init()
+  augroup END
+else
+  call shadeline#init()
+endif
 
 
 let g:loaded_shadeline = 1

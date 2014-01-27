@@ -94,7 +94,7 @@ endfunction
 function! shadeline#preset#ruler()
 	return {
 				\ 	'type': 'raw',
-				\ 	'value': '%4p%%:%-2v',
+				\ 	'value': '%3p%%:%-2v',
 				\ }
 endfunction
 

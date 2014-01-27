@@ -42,18 +42,18 @@ CONTENTS                                                  *shadeline-contents*
 ==============================================================================
 2. Config                                                   *shadeline-config*
 
-|shadeline| uses global variable *g:shadeline* for configuration.
+|Shadeline| uses global variable *g:shadeline* for configuration.
 >
     g:shadeline
 <
-g:shadeline is |Dictionary| and has two key: "active" and "inactive".
+g:shadeline is a |Dictionary| and has two key: "active" and "inactive".
 >
     g:shadeline.
                |-- active
                `-- inactive
 <
 "active" will be used for a status line of the current buffer, "inactive"
-otherwise. Each value is also |Dictionary| and has two key: "left" and
+otherwise. Each value is also a |Dictionary| and has two key: "left" and
 "right".
 >
     g:shadeline.
@@ -65,7 +65,7 @@ otherwise. Each value is also |Dictionary| and has two key: "left" and
                           `- right
 <
 "left" presents left-sided items of the status bar, "right" is right-side.
-Each value is |List| of items. For example:
+Each value is a |List| of items. For example:
 >
     g:shadeline.active.left = [
           \ 'fname', 'flags']
@@ -88,7 +88,7 @@ available types.
 
 There are five types of items:
 
-    Type           Example   Section~
+    Type           Example   Related Section~
     -------------  --------  ----------------------------~
     Preset         "fname"   |shadeline-item-preset|
     Percent style  "%m"      |shadeline-item-percent-style|
@@ -132,7 +132,7 @@ Value                   Description~
 >
                             shadeline.txt
 <
-"filetype", "ff"                              *shadeline-item-preset-filetype*
+"filetype", "ft"                              *shadeline-item-preset-filetype*
                         File type of file in the buffer. Example:
 >
                             javascript
@@ -192,7 +192,7 @@ show the time, define MyItem_Time function:
       return strftime('%H:%M:%S')
     endfunction
 <
-And add a function name to config:
+And add the function name to the config:
 >
     g:shadeline.active.right = [
           \ 'ft', 'MyItem_Time']

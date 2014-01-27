@@ -22,6 +22,7 @@ function! shadeline#init()
 		let g:shadeline = deepcopy(s:def_config)
 	endif
 	call shadeline#expander#expand(g:shadeline)
+	let g:shadeline.initialized_ = 1
 
 	call shadeline#enable()
 endfunction
@@ -53,6 +54,12 @@ endfunction
 
 
 function! shadeline#update_all()
+	if !has_key(g:, 'shadeline')
+				\ || !get(g:shadeline, 'initialized_', 0)
+		call shadeline#init()
+		return
+	endif
+
 	let last_i = winnr('$')
 	let i = 1
 

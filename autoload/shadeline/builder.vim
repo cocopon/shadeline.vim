@@ -17,13 +17,13 @@ function! shadeline#builder#build(config, winnr)
 	call add(results, line_config.prefix)
 
 	let context.side = 'left'
-  let items = s:build_items(line_config.left, context)
+	let items = s:build_items(line_config.left, context)
 	call add(results, join(items, line_config.separator))
 
 	call add(results, '%=')
 
 	let context.side = 'right'
-  let items = s:build_items(line_config.right, context)
+	let items = s:build_items(line_config.right, context)
 	call add(results, join(items, line_config.separator))
 
 	call add(results, line_config.postfix)

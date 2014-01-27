@@ -21,14 +21,14 @@ let s:mode_map = {
 
 
 function! shadeline#functions#fan()
-  if !exists('b:shadeline_fan_count')
-        \ || b:shadeline_fan_count >= 3
-    let b:shadeline_fan_count = -1
-  endif
+	if !exists('b:shadeline_fan_count')
+				\ || b:shadeline_fan_count >= 3
+		let b:shadeline_fan_count = -1
+	endif
 
-  let b:shadeline_fan_count += 1
+	let b:shadeline_fan_count += 1
 
-  return ['-', '\', '|', '/'][b:shadeline_fan_count]
+	return ['-', '\', '|', '/'][b:shadeline_fan_count]
 endfunction
 
 

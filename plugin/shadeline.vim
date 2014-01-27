@@ -17,12 +17,12 @@ command! -nargs=0 ShadelineUpdate call shadeline#update_all()
 
 
 if has('vim_starting')
-  augroup Shadeline
-    autocmd!
-    autocmd VimEnter * call shadeline#init()
-  augroup END
+	augroup Shadeline
+		autocmd!
+		autocmd VimEnter * call shadeline#init()
+	augroup END
 else
-  call shadeline#init()
+	call shadeline#init()
 endif
 
 

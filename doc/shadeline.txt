@@ -281,7 +281,7 @@ Git branch (using |fugitive|):
       let name = exists('*fugitive#head')
             \ ? fugitive#head()
             \ : ''
-      return printf('(%s)', empty(name) ? '-' : name)
+      return empty(name) ? '' : printf('(%s)', name)
     endfunction
 <
 

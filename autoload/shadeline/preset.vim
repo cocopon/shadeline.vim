@@ -15,13 +15,13 @@ let s:short_names = {
 			\ }
 
 
-function! shadeline#preset#function_name(name)
+function! shadeline#preset#function_name(name) abort
 	let name = get(s:short_names, a:name, a:name)
 	return printf('shadeline#preset#%s', name)
 endfunction
 
 
-function! shadeline#preset#fan()
+function! shadeline#preset#fan() abort
 	return {
 				\ 	'type': 'function',
 				\ 	'value': 'shadeline#functions#fan',
@@ -29,7 +29,7 @@ function! shadeline#preset#fan()
 endfunction
 
 
-function! shadeline#preset#fileencoding()
+function! shadeline#preset#fileencoding() abort
 	return {
 				\ 	'type': 'function',
 				\ 	'value': 'shadeline#functions#fileencoding',
@@ -37,7 +37,7 @@ function! shadeline#preset#fileencoding()
 endfunction
 
 
-function! shadeline#preset#fileformat()
+function! shadeline#preset#fileformat() abort
 	return {
 				\ 	'type': 'function',
 				\ 	'value': 'shadeline#functions#fileformat',
@@ -45,7 +45,7 @@ function! shadeline#preset#fileformat()
 endfunction
 
 
-function! shadeline#preset#filename()
+function! shadeline#preset#filename() abort
 	return {
 				\ 	'type': 'raw',
 				\ 	'value': '%t',
@@ -53,7 +53,7 @@ function! shadeline#preset#filename()
 endfunction
 
 
-function! shadeline#preset#filetype()
+function! shadeline#preset#filetype() abort
 	return {
 				\ 	'type': 'function',
 				\ 	'value': 'shadeline#functions#filetype',
@@ -61,7 +61,7 @@ function! shadeline#preset#filetype()
 endfunction
 
 
-function! shadeline#preset#flags()
+function! shadeline#preset#flags() abort
 	return {
 				\ 	'type': 'group',
 				\ 	'separator': '',
@@ -75,7 +75,7 @@ function! shadeline#preset#flags()
 endfunction
 
 
-function! shadeline#preset#mode()
+function! shadeline#preset#mode() abort
 	return {
 				\ 	'type': 'function',
 				\ 	'value': 'shadeline#functions#mode',
@@ -83,7 +83,7 @@ function! shadeline#preset#mode()
 endfunction
 
 
-function! shadeline#preset#modified()
+function! shadeline#preset#modified() abort
 	return {
 				\ 	'type': 'function',
 				\ 	'value': 'shadeline#functions#modified',
@@ -91,7 +91,7 @@ function! shadeline#preset#modified()
 endfunction
 
 
-function! shadeline#preset#ruler()
+function! shadeline#preset#ruler() abort
 	return {
 				\ 	'type': 'raw',
 				\ 	'value': '%3p%%:%-2v',

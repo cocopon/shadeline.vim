@@ -17,7 +17,7 @@ let s:def_config = {
 			\ }
 
 
-function! shadeline#init()
+function! shadeline#init() abort
 	if !has_key(g:, 'shadeline')
 		let g:shadeline = deepcopy(s:def_config)
 	endif
@@ -28,7 +28,7 @@ function! shadeline#init()
 endfunction
 
 
-function! shadeline#enable()
+function! shadeline#enable() abort
 	augroup Shadeline
 		autocmd!
 		autocmd BufWinEnter,WinEnter * call shadeline#update_all()
@@ -38,7 +38,7 @@ function! shadeline#enable()
 endfunction
 
 
-function! shadeline#disable()
+function! shadeline#disable() abort
 	augroup Shadeline
 		autocmd!
 	augroup END
@@ -53,7 +53,7 @@ function! shadeline#disable()
 endfunction
 
 
-function! shadeline#update_all()
+function! shadeline#update_all() abort
 	if !has_key(g:, 'shadeline')
 				\ || !get(g:shadeline, 'initialized_', 0)
 		call shadeline#init()
@@ -70,7 +70,7 @@ function! shadeline#update_all()
 endfunction
 
 
-function! shadeline#update(winnr)
+function! shadeline#update(winnr) abort
 	let stl = shadeline#builder#build(g:shadeline, a:winnr)
 	call setwinvar(a:winnr, '&stl', stl)
 endfunction

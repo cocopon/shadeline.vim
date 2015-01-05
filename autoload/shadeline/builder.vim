@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! shadeline#builder#build(config, winnr)
+function! shadeline#builder#build(config, winnr) abort
 	let activity = (a:winnr == winnr()) ? 'active' : 'inactive'
 	let line_config = a:config[activity]
 	let context = {
@@ -32,7 +32,7 @@ function! shadeline#builder#build(config, winnr)
 endfunction
 
 
-function! s:build_items(items, context)
+function! s:build_items(items, context) abort
 	let context = {
 				\ 	'index': 0,
 				\ 	'items': a:items,
@@ -54,7 +54,7 @@ function! s:build_items(items, context)
 endfunction
 
 
-function! shadeline#builder#build_item(item_config)
+function! shadeline#builder#build_item(item_config) abort
 	let builder = printf('shadeline#builder#%s#value',
 				\ a:item_config.type)
 	let value = function(builder)(a:item_config)
@@ -64,7 +64,7 @@ function! shadeline#builder#build_item(item_config)
 endfunction
 
 
-function! shadeline#builder#format_fields(config)
+function! shadeline#builder#format_fields(config) abort
 	let prefix = ''
 
 	if get(a:config, 'left_justify', 0)

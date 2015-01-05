@@ -6,7 +6,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! shadeline#builder#group#value(config)
+function! shadeline#builder#group#value(config) abort
 	let items = []
 	for item_config in a:config.items
 		let item = shadeline#builder#build_item(item_config)

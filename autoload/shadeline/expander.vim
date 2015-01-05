@@ -10,7 +10,7 @@ let s:def_line_item_separator = ' '
 let s:def_group_item_separator = ' | '
 
 
-function! shadeline#expander#expand(config)
+function! shadeline#expander#expand(config) abort
 	for activity in ['active', 'inactive']
 		if !has_key(a:config, activity)
 			let a:config[activity] = {}
@@ -20,7 +20,7 @@ function! shadeline#expander#expand(config)
 endfunction
 
 
-function! s:expand_line(line_config)
+function! s:expand_line(line_config) abort
 	for side in ['left', 'right']
 		if !has_key(a:line_config, side)
 			let a:line_config[side] = []
@@ -37,7 +37,7 @@ function! s:expand_line(line_config)
 endfunction
 
 
-function! s:expand_item_data(data)
+function! s:expand_item_data(data) abort
 	if type(a:data) == type({})
 		return s:expand_item_config(a:data)
 	endif
@@ -60,7 +60,7 @@ function! s:expand_item_data(data)
 endfunction
 
 
-function! s:expand_item_config(config)
+function! s:expand_item_config(config) abort
 	let config = copy(a:config)
 
 	if config.type ==# 'group'
@@ -78,8 +78,8 @@ function! s:expand_item_config(config)
 endfunction
 
 
-function! s:str2config(str)
-	if a:str == '<'
+function! s:str2config(str) abort
+	if a:str ==? '<'
 		" Truncation marker
 		return {
 					\ 	'type': 'raw',
